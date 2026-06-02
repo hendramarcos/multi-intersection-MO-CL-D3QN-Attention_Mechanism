@@ -166,3 +166,22 @@ Varian yang diuji:
 | `attention_ablation_single_objective` | Menguji kontribusi Multi-Objective Reward                             |
 | `ablation_no_attention`               | Menguji kontribusi Attention Mechanism                                |
 
+## 13. Implementasi model attention ke SUMO GUI
+Setelah training selesai, jalankan model terbaik:
+
+```bash
+python deploy_attention_model_gui_indonesia.py --model outputs_attention_indonesia/full_attention_mo_cl_d3qn/best_model.pt --gui --wait-enter --keep-open
+```
+
+## Output penting
+```
+outputs_attention_indonesia/
+  full_attention_mo_cl_d3qn/
+    best_model.pt
+    last_model.pt
+    training_metrics.csv
+    attention_weights.csv
+    neighbor_map.csv
+  plots/
+  attention_ablation_last20_summary.csv
+```
