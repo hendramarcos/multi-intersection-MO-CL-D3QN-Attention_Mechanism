@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <input>
+        <net-file value="city1_indonesia_2lane_leftfree.net.xml"/>
+        <route-files value="city1_dynamic_mixed.rou.xml"/>
+        <additional-files value="vtypes_indonesia.add.xml"/>
+    </input>
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+        <step-length value="1"/>
+    </time>
+    <processing>
+        <time-to-teleport value="-1"/>
+        <collision.action value="warn"/>
+    </processing>
+    <report>
+        <no-step-log value="true"/>
+        <duration-log.statistics value="true"/>
+    </report>
+    <gui_only>
+        <start value="true"/>
+    </gui_only>
+</configuration>
