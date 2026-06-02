@@ -118,3 +118,51 @@ python verify_2lane_leftfree_network.py --net city1_indonesia_2lane_leftfree.net
 ```
 
 Script ini memeriksa atribut `lefthand`, distribusi jumlah lajur, serta memastikan link belok kiri pada TLS selalu berada pada status hijau/permissive.
+
+## 11. Attention Mechanism untuk metode Multi-Agent Attention MO-CL-D3QN.
+
+Isi program
+File	Fungsi
+train_multiagent_attention_mo_cl_d3qn_indonesia.py	Training model Attention MO-CL-D3QN
+run_ablation_attention_indonesia.py	Studi ablasi lengkap termasuk ablasi tanpa attention
+deploy_attention_model_gui_indonesia.py	Implementasi model attention ke SUMO GUI
+
+Konsep yang ditambahkan
+
+Setiap persimpangan sekarang tidak hanya membaca kondisi lokalnya sendiri, tetapi juga membaca kondisi persimpangan tetangga. Attention mechanism menghitung bobot kepentingan setiap tetangga, sehingga agent dapat menentukan fase lampu berdasarkan:
+
+antrean lokal;
+waiting time lokal;
+kondisi persimpangan tetangga;
+throughput jaringan;
+fuel consumption;
+reward curriculum learning.
+
+Dengan demikian, persimpangan menjadi terkoordinasi, bukan hanya bekerja sendiri-sendiri.
+
+## 12. Cara menjalankan training model attention
+
+```bash
+python train_multiagent_attention_mo_cl_d3qn_indonesia.py --episodes 120 --variant full_attention_mo_cl_d3qn --sumocfg city1_indonesia_2lane_leftfree.sumocfg
+```
+
+Uji cepat:
+```bash
+python train_multiagent_attention_mo_cl_d3qn_indonesia.py --episodes 5 --max-steps 500 --variant full_attention_mo_cl_d3qn
+```
+
+## Studi ablasi attention lengkap
+
+```bash
+python run_ablation_attention_indonesia.py --episodes 120 --sumocfg city1_indonesia_2lane_leftfree.sumocfg
+```
+
+Varian yang diuji:
+
+| Varian                                | Tujuan                                                                |
+| ------------------------------------- | --------------------------------------------------------------------- |
+| `full_attention_mo_cl_d3qn`           | Model utama: Attention + Multi-Objective Reward + Curriculum Learning |
+| `attention_ablation_no_cl`            | Menguji kontribusi Curriculum Learning                                |
+| `attention_ablation_single_objective` | Menguji kontribusi Multi-Objective Reward                             |
+| `ablation_no_attention`               | Menguji kontribusi Attention Mechanism                                |
+
