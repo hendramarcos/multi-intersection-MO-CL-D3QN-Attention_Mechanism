@@ -1,4 +1,4 @@
-# Project Multi-Intersection MO-CL-D3QN Indonesia: 2 Lajur dan Belok Kiri Langsung
+# Project Multi-Intersection MO-CL-D3QN
 
 Project ini menyiapkan jaringan multi-simpang SUMO untuk konteks Indonesia:
 
